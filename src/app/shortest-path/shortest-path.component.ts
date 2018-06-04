@@ -145,10 +145,16 @@ export class ShortestPathComponent implements OnInit {
       prevCity = curCity;    
       if(this.pathChoice == 'Cheapest'){
         console.log('Searching for Cheapest');
+        this.realDijkstra.addVertex(new Vertex(e.departure, departureArray, e.cost * (1 - e.discount / 100)));
+        
       }else if(this.pathChoice == 'Shortest'){
         console.log('Searching for Shortest');
-      }
-      this.realDijkstra.addVertex(new Vertex(e.departure, departureArray, e.cost * (1 - e.discount / 100)));
+        this.realDijkstra.addVertex(new Vertex(e.departure, departureArray, 1));
+        
+      }else{
+        console.log('Searching for Default');        
+        this.realDijkstra.addVertex(new Vertex(e.departure, departureArray, e.cost * (1 - e.discount / 100)));
+      } // TODO: to be implemented
       numberOfDeals++;      
       }
   }
