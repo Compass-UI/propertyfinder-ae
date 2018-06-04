@@ -2,6 +2,28 @@ mat-toolbar{
     background-image: url(https://www.propertyfinder.ae/dist/desktop/assets/background-images/background-image-ae-4.jpg);
     color: white;
     text-shadow: 2px 2px darkblue;
-
-    
+    min-height: 200px;    
 }
+footer a{
+    color: white;
+    text-decoration: none;
+}
+
+footer mat-toolbar{
+    background: darkblue;    
+    color: white;
+    text-shadow: 2px 2px black;
+    min-height: 150px;  
+}
+footer address{
+    font-family: 'Verdana', Courier, monospace;
+    font-size: .5em;
+    display: inline-block;
+    text-align: center;
+}
+.fotter {
+    /* This fills the remaining space, by using flexbox. 
+       Every toolbar row uses a flexbox row layout. */
+    flex: 1 1 auto;
+  }
+  
