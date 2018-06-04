@@ -1,0 +1,54 @@
+
+  <div class="example-container">
+      <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <input type="text" 
+        placeholder="City from" 
+        aria-label="City departure" 
+        matInput [formControl]="fromControl" 
+        [matAutocomplete]="auto">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{ option }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="text" placeholder="City to" aria-label="City arrival" matInput [formControl]="toControl" [matAutocomplete]="auto">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{ option }}
+        </mat-option>
+      </mat-autocomplete>
+
+    </mat-form-field>
+  </form>
+
+  <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Departure">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+    
+      <mat-form-field>
+        <input matInput placeholder="Criteria">
+      </mat-form-field>
+    
+      <mat-form-field>
+        <textarea matInput placeholder="Textarea"></textarea>
+      </mat-form-field>
+    
+      <mat-form-field>
+        <mat-select placeholder="Select">
+          <mat-option value="option">London</mat-option>
+          <mat-option value="option">Amsterdam</mat-option>
+          <mat-option value="option">Paris</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    
+  
+  <!-- Copyright 2018 Google Inc. All Rights Reserved.
+      Use of this source code is governed by an MIT-style license that
+      can be found in the LICENSE file at http://angular.io/license -->

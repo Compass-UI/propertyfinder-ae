@@ -1,0 +1,17 @@
+.flex-container{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+@media all and (max-width: 800px){
+    .flex-container{
+        justify-content: flex-start;
+    }
+}
+.flex-item{
+    width: 100%;
+    text-align: center;
+    line-height: 25px; /* alight vertically */
+    padding: 2px;
+    border: solid 1px lightblue;
+}

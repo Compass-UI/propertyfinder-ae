@@ -1,0 +1,105 @@
+<div class="flex-container" fxLayout.xs="column">
+  <div class="flex-item">
+
+    <mat-card>
+          <mat-card-title>
+            Search by: {{pathChoice}}
+          </mat-card-title>
+            <mat-radio-group class="example-radio-group" [(ngModel)]="pathChoice">
+                <mat-radio-button class="example-radio-button" *ngFor="let choice of cheapShort" [value]="choice"> 
+                  {{choice}}
+                </mat-radio-button>
+          </mat-radio-group>
+    </mat-card>
+    <mat-card>
+      <form 
+        (ngSubmit)="search()"
+        [formGroup]="searchForm" >
+        <mat-form-field class="example-full-width">
+            <input type="text" 
+              placeholder="City from" 
+              aria-label="City departure" 
+              matInput formControlName="fromCity"
+              required
+              [matAutocomplete]="auto">
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                {{ option }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+      
+          <mat-form-field>
+            <input type="text" 
+              placeholder="City to" 
+              aria-label="City arrival" 
+              matInput formControlName="toCity"
+              [matAutocomplete]="auto"
+              required
+              >
+            <mat-autocomplete 
+              autoActiveFirstOption 
+              #auto="matAutocomplete"
+              >
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                {{ option }}
+              </mat-option>
+            </mat-autocomplete>
+    
+          </mat-form-field>
+        
+        <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Departure">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        
+        <div>
+          <button mat-button 
+            (click)="searchPath()"
+            [disabled]="!searchForm.valid">
+            <mat-icon>search</mat-icon> Search
+          </button>
+          <button mat-button 
+            (click)="sampleData()">
+            <mat-icon>add</mat-icon> Sample data
+          </button>
+        </div>
+
+      </form>
+    </mat-card>
+    <mat-card>
+      <div class="flex-item">
+        <!-- <mat-spinner></mat-spinner> -->
+        <div class="example-container mat-elevation-z8">
+          <span *ngIf="!!shortestTrips">{{ shortestTrips | json }}</span>
+          <mat-grid-list cols="4" rowHeight="2:1">
+            <mat-grid-tile *ngFor="let trip of shortestTrips; let isFirst=first; let isLast=last">
+                <mat-card>
+                      <div *ngIf="!isLast"><mat-icon>flight_takeoff</mat-icon>{{trip}}
+                      <mat-icon>trending_flat</mat-icon></div> 
+                      <div *ngIf="isLast"><mat-icon>home</mat-icon>
+                      Total: {{trip}}</div> 
+                      <!-- <mat-icon>local_car_wash</mat-icon> {{trip}} -->
+                      <!-- <mat-icon>train</mat-icon> {{trip}} -->
+                </mat-card>
+              </mat-grid-tile>
+            </mat-grid-list>
+        </div>
+        <mat-paginator 
+          [length]="100" 
+          [pageSize]="10" 
+          [pageSizeOptions]="[5, 10, 25, 100]">
+        </mat-paginator>
+      </div>
+    </mat-card>
+    <mat-card>
+        <div>
+            <button mat-button (click)="reset()">
+              <mat-icon>cached</mat-icon> Reset
+            </button>
+  
+          </div>
+    </mat-card>
+  </div>
+</div>
