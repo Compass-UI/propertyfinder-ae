@@ -10,7 +10,7 @@
 * For great UI experience Angular Material is used
     ** Mobile enabled
     ** Double tab on field to see zoom effect on iPhone
-    ** Paganation for long search results ( not fully implemented - not asked )
+    ** Pagination for long search results ( not fully implemented - not asked )
     ** Calendar control for trip dates ( not fully implemented - not asked )
     ** Depending on type of transportation used visual indicator plane/car/train will be displayed ( not fully implemented - not asked )
 * Basic validation
